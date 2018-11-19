@@ -9,26 +9,26 @@ It was made essentially to make data sharing easier between Google Colaboratory 
 
 
 # methods
-__Gd = Google_drive()__
+__Gd = Google_drive()__  
 Call main class
 
-__Gd.upload_version(local_file, drive_dir_ID)__
+__Gd.upload_version(local_file, drive_dir_ID)__  
 This method uploads the file called by __os.path.basename(local_file)__ available inside the local directory path __local_file__ to the Google Drive directory provided by its ID __drive_dir_ID__. Basename of local_file must be the same as used in load_version().
 
-__Gd.load_version(local_file, drive_dir_ID, specific_version=None)__
+__Gd.load_version(local_file, drive_dir_ID, specific_version=None)__  
 This method import file called by __os.path.basename(local_file)__ (if possible) available inside the Google Drive directory provided by its ID __drive_dir_ID__ and save it under the path __local_file__. Basename of local_file must be the same as used in upload_version().
 If specific_version is None, default version is the highest version.
 
-__Gd.print_all_versions(filename, drive_dir_ID)__
+__Gd.print_all_versions(filename, drive_dir_ID)__  
 Thsi method prints all current versions of a file called __filename__ available inside the Google Drive directory provided by its ID __drive_dir_ID__.
 
-__Gd.load_all(local_dir, drive_dir_ID, force=False)__
+__Gd.load_all(local_dir, drive_dir_ID, force=False)__  
 This method import all files available inside the Google Drive directory provided by its ID __drive_dir_ID__ to the local directory __local_dir__. __force__ allows overwriting 
 
-__Gd.load_file(local_dir, file_ID)__
+__Gd.load_file(local_dir, file_ID)__  
 This method import file provided by its ID __file_ID__ into the the local directory __local_dir__.
 
-__Gd.upload_file(local_path, drive_dir_ID)__
+__Gd.upload_file(local_path, drive_dir_ID)__  
 This method upload a file available inside the local directory path __local_file__ into the Google Drive directory provided by its ID __drive_dir_ID__.
 
 
@@ -56,3 +56,13 @@ state['state_dict'] = net.state_dict()
 torch.save(state, local_file)
 
 Gd.upload_model(local_file, drive_dir_ID)
+
+
+# Use on a local machine:
+For a local machine, colabtools repo must be installed
+
+git clone https://github.com/googlecolab/colabtools.git
+cd colabtools
+python setup.py install
+
+To learn more: https://stackoverflow.com/questions/50194637/colaboratory-how-to-install-and-use-on-local-machine
