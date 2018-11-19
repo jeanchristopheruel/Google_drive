@@ -9,15 +9,18 @@ It was made essentially to make data sharing easier between Google Colaboratory 
 
 
 # methods
-__Gd.upload_version(name, local_file, drive_dir_ID)__
-This method uploads the file called __name__ available inside the local directory path __local_file__ to the Google Drive directory provided by its ID __drive_dir_ID__..
+__Gd = Google_drive()__
+Call main class
 
-__Gd.print_all_versions(name, drive_dir_ID)__
-Thsi method prints all current versions of a file called __name__ available inside the Google Drive directory provided by its ID __drive_dir_ID__.
+__Gd.upload_version(local_file, drive_dir_ID)__
+This method uploads the file called by __os.path.basename(local_file)__ available inside the local directory path __local_file__ to the Google Drive directory provided by its ID __drive_dir_ID__. Basename of local_file must be the same as used in load_version().
 
-__Gd.load_version(name, local_file, drive_dir_ID, specific_version=None)__
-This method import file called __name__ available inside the Google Drive directory provided by its ID __drive_dir_ID__ and save it under the path __local_file__.
+__Gd.load_version(local_file, drive_dir_ID, specific_version=None)__
+This method import file called by __os.path.basename(local_file)__ (if possible) available inside the Google Drive directory provided by its ID __drive_dir_ID__ and save it under the path __local_file__. Basename of local_file must be the same as used in upload_version().
 If specific_version is None, default version is the highest version.
+
+__Gd.print_all_versions(filename, drive_dir_ID)__
+Thsi method prints all current versions of a file called __filename__ available inside the Google Drive directory provided by its ID __drive_dir_ID__.
 
 __Gd.load_all(local_dir, drive_dir_ID, force=False)__
 This method import all files available inside the Google Drive directory provided by its ID __drive_dir_ID__ to the local directory __local_dir__. __force__ allows overwriting 
