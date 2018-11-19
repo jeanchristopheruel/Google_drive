@@ -48,7 +48,7 @@ class Google_drive:
 
     def load_version(self, local_file, drive_dir_ID, specific_version=None):
         handle = drive_handle_model(self.drive, drive_dir_ID)
-        handle.load_saved_states(local_file, specific_version=specific_version)
+        handle.load_version_handle(local_file, specific_version=specific_version)
 
     def upload_version(self, local_file, drive_dir_ID):
         handle = drive_handle_model(self.drive, drive_dir_ID)
@@ -127,7 +127,7 @@ class drive_handle_model:
         else:
             self.last_version = 0
 
-    def load_saved_states(self, local_file, specific_version=None):
+    def load_version_handle(self, local_file, specific_version=None):
         name = os.path.basename(local_file)
         self.find_last_versions(name)
 
@@ -139,7 +139,7 @@ class drive_handle_model:
                 if specific_version:
                     try:
                         version = specific_version
-                        file_name = name + '_v__' + str(version) + '.state'
+                        file_name = name + '_v__' + str(version)
                         file_id = self.get_specific_file[file_name]
                         f_ = self.drive.CreateFile({'id': file_id})
                         f_.GetContentFile(local_file)
@@ -149,7 +149,7 @@ class drive_handle_model:
                 else:
                     try:
                         version = self.last_version
-                        file_name = name + '_v__' + str(version) + '.state'
+                        file_name = name + '_v__' + str(version)
                         file_id = self.get_specific_file[file_name]
                         f_ = self.drive.CreateFile({'id': file_id})
                         f_.GetContentFile(local_file)
