@@ -1,5 +1,5 @@
 # Google_drive
-Class for uploading and downloading files and handling file versions from Google drive  
+A simple Class for uploading and downloading files and handling file versions from Google drive  
   
 It was made essentially to make data sharing easier between Google Colaboratory and Google Drive so I can make sure my model is saved properly after a few hours of training even if the process is being killed for inactivity.  
 
