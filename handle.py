@@ -52,7 +52,7 @@ class Google_drive:
 
     def upload_version(self, local_file, drive_dir_ID):
         handle = drive_handle_model(self.drive, drive_dir_ID)
-        handle.upload_model(local_file)
+        handle.upload_version_handle(local_file)
 
     def load_all(self, local_dir, drive_dir_ID, force=False):
         self.local_dir = local_dir
@@ -161,13 +161,13 @@ class drive_handle_model:
         else:
             print('No previous version available on Google drive')
 
-    def upload_model(self, local_file):
+    def upload_version_handle(self, local_file):
         name = os.path.basename(local_file)
         self.find_last_versions(name)
         if os.path.isfile(local_file):
             last_version = self.last_version
             folder = self.drive.CreateFile({'parents': [{u'id': self.drive_dir_ID}],
-                                            'title': name + '_v__' + str(last_version + 1) + '.state'})
+                                            'title': name + '_v__' + str(last_version + 1)})
             folder.SetContentFile(local_file)
             folder.Upload()
             print('Model uploaded under version {}'.format(last_version + 1))
