@@ -33,7 +33,7 @@ This method upload a file available inside the local directory path __local_file
 
 
 # Exemple for Google colaboratory
-''
+``
 !pip install - U - q PyDrive  
 import os  
 os.chdir('/content/')  
@@ -57,14 +57,14 @@ state['state_dict'] = net.state_dict()
 torch.save(state, local_file)  
   
 Gd.upload_model(local_file, drive_dir_ID)  
-''
+``
 
 # Use on a local machine:
 For a local machine, colabtools repo must be installed  
-''
+``
 git clone https://github.com/googlecolab/colabtools.git  
 cd colabtools  
 python setup.py install  
-''
+``
   
 To learn more: https://stackoverflow.com/questions/50194637/colaboratory-how-to-install-and-use-on-local-machine  
