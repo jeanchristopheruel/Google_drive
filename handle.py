@@ -49,7 +49,7 @@ class Google_drive:
         handle = drive_handle_model(self.drive, drive_dir_ID)
         handle.load_saved_states(local_file, specific_version=specific_version)
 
-    def upload_model(self, local_file, drive_dir_ID):
+    def upload_version(self, local_file, drive_dir_ID):
         handle = drive_handle_model(self.drive, drive_dir_ID)
         handle.upload_model(local_file)
 
