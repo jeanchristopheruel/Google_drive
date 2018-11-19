@@ -41,16 +41,16 @@ class Google_drive:
         gauth.SaveCredentialsFile(mycreds_file)
         self.drive = GoogleDrive(gauth)
 
-    def print_all_versions(self, name, drive_dir_ID):
-        handle = drive_handle_model(self.drive, name, drive_dir_ID)
-        handle.print_all_versions()
+    def print_all_versions(self, filename, drive_dir_ID):
+        handle = drive_handle_model(self.drive, drive_dir_ID)
+        handle.print_all_versions(filename)
 
-    def load_version(self, name, local_file, drive_dir_ID, specific_version=None):
-        handle = drive_handle_model(self.drive, name, drive_dir_ID)
+    def load_version(self, local_file, drive_dir_ID, specific_version=None):
+        handle = drive_handle_model(self.drive, drive_dir_ID)
         handle.load_saved_states(local_file, specific_version=specific_version)
 
-    def upload_model(self, name, local_file, drive_dir_ID):
-        handle = drive_handle_model(self.drive, name, drive_dir_ID)
+    def upload_model(self, local_file, drive_dir_ID):
+        handle = drive_handle_model(self.drive, drive_dir_ID)
         handle.upload_model(local_file)
 
     def load_all(self, local_dir, drive_dir_ID, force=False):
@@ -102,15 +102,12 @@ class Google_drive:
 
 
 class drive_handle_model:
-    def __init__(self, drive, name, drive_dir_ID):
+    def __init__(self, drive, drive_dir_ID):
+        self.drive = drive
         self.drive_dir_ID = drive_dir_ID
-        self.name = name
-
-        ID = "\'{}\' in parents".format(drive_dir_ID)
-        file_list = drive.ListFile(
-            {'q': ID}).GetList()
-        self.get_specific_file = {f['title']: f['id'] for f in file_list if name in f['title']}
-        self.versions = [int(s) for str in self.get_specific_file.keys() for s in str.split('__') if s.isdigit()]
+        self.get_specific_file = None
+        self.last_version = None
+        self.versions = None
 
     def print_all_versions(self):
         if len(self.versions) > 0:
@@ -119,13 +116,19 @@ class drive_handle_model:
         else:
             print('No previous version available on Google drive')
 
-    def find_last_versions(self):
+    def find_last_versions(self, name):
+        ID = "\'{}\' in parents".format(self.drive_dir_ID)
+        file_list = self.drive.ListFile({'q': ID}).GetList()
+        self.get_specific_file = {f['title']: f['id'] for f in file_list if name in f['title']}
+        self.versions = [int(s) for str in self.get_specific_file.keys() for s in str.split('__') if s.isdigit()]
         if len(self.versions) > 0:
-            return max(self.versions)
+            self.last_version = max(self.versions)
         else:
-            return 0
+            self.last_version = 0
 
     def load_saved_states(self, local_file, specific_version=None):
+        name = os.path.basename(local_file)
+        self.find_last_versions(name)
         self.print_all_versions()
 
         if len(self.versions) > 0:
@@ -136,7 +139,7 @@ class drive_handle_model:
                 if specific_version:
                     try:
                         version = specific_version
-                        file_name = self.name + '_v__' + str(version) + '.state'
+                        file_name = name + '_v__' + str(version) + '.state'
                         file_id = self.get_specific_file[file_name]
                         f_ = self.drive.CreateFile({'id': file_id})
                         f_.GetContentFile(local_file)
@@ -145,8 +148,8 @@ class drive_handle_model:
                         print('Model of specific_version {} not found on google Drive'.format(specific_version))
                 else:
                     try:
-                        version = self.find_last_versions()
-                        file_name = self.name + '_v__' + str(version) + '.state'
+                        version = self.last_version
+                        file_name = name + '_v__' + str(version) + '.state'
                         file_id = self.get_specific_file[file_name]
                         f_ = self.drive.CreateFile({'id': file_id})
                         f_.GetContentFile(local_file)
@@ -154,15 +157,17 @@ class drive_handle_model:
                     except:
                         print('Not able to load last version of the model from google Drive')
             else:
-                print('{} already exists'.format(local_file))
+                print('{} already exists in {}'.format(name, os.path.dirname(local_file)))
         else:
             print('No previous version available on Google drive')
 
     def upload_model(self, local_file):
+        name = os.path.basename(local_file)
+        self.find_last_versions(name)
         if os.path.isfile(local_file):
-            last_version = self.find_last_versions()
+            last_version = self.last_version
             folder = self.drive.CreateFile({'parents': [{u'id': self.drive_dir_ID}],
-                                            'title': self.name + '_v__' + str(last_version + 1) + '.state'})
+                                            'title': name + '_v__' + str(last_version + 1) + '.state'})
             folder.SetContentFile(local_file)
             folder.Upload()
             print('Model uploaded under version {}'.format(last_version + 1))
