@@ -121,7 +121,7 @@ class drive_handle_model:
         ID = "\'{}\' in parents".format(self.drive_dir_ID)
         file_list = self.drive.ListFile({'q': ID}).GetList()
         self.get_specific_file = {f['title']: f['id'] for f in file_list if name in f['title']}
-        self.versions = [int(s) for str in self.get_specific_file.keys() for s in str.split('__') if s.isdigit()]
+        self.versions = [int(s) for str in self.get_specific_file.keys() for s in str.split('_v__') if s.isdigit()]
         if len(self.versions) > 0:
             self.last_version = max(self.versions)
         else:
