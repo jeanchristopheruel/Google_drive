@@ -130,7 +130,6 @@ class drive_handle_model:
     def load_saved_states(self, local_file, specific_version=None):
         name = os.path.basename(local_file)
         self.find_last_versions(name)
-        self.print_all_versions()
 
         if len(self.versions) > 0:
             if not os.path.exists(os.path.dirname(local_file)):
