@@ -45,7 +45,7 @@ class Google_drive:
         handle = drive_handle_model(self.drive, name, drive_dir_ID)
         handle.print_all_versions()
 
-    def load_saved_states(self, name, local_dir, drive_dir_ID, specific_version=None):
+    def load_version(self, name, local_dir, drive_dir_ID, specific_version=None):
         handle = drive_handle_model(self.drive, name, drive_dir_ID)
         handle.load_saved_states(local_dir, specific_version=specific_version)
 
