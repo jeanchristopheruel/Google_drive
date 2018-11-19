@@ -43,7 +43,8 @@ class Google_drive:
 
     def print_all_versions(self, filename, drive_dir_ID):
         handle = drive_handle_model(self.drive, drive_dir_ID)
-        handle.print_all_versions(filename)
+        handle.find_last_versions(filename)
+        handle.print_all_versions()
 
     def load_version(self, local_file, drive_dir_ID, specific_version=None):
         handle = drive_handle_model(self.drive, drive_dir_ID)
