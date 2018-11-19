@@ -1,11 +1,11 @@
 # Google_drive
-Class for uploading and downloading files and handling file versions from Google drive
-
-It was made essentially to make data sharing easier between Google Colaboratory and Google Drive so I can make sure my model is saved properly after a few hours of training even if the process is being killed for inactivity.
+Class for uploading and downloading files and handling file versions from Google drive  
+  
+It was made essentially to make data sharing easier between Google Colaboratory and Google Drive so I can make sure my model is saved properly after a few hours of training even if the process is being killed for inactivity.  
 
 
 # Requirements
-!pip install - U - q PyDrive
+!pip install - U - q PyDrive  
 
 
 # methods
@@ -33,31 +33,30 @@ This method upload a file available inside the local directory path __local_file
 
 
 # Exemple for Google colaboratory
-!pip install - U - q PyDrive
-import os
-os.chdir('/content/')
-!git clone https://github.com/ruelj2/Google_drive.git
-
-from Google_drive.handle import Google_drive
-Gd = Google_drive()
-
-#This is a Google directory link: https://drive.google.com/drive/folders/1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX
-#This is its ID: '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX'
-Gd.load_all('/content/projet/dataset', '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX')
-
-local_file = os.path.join('project/networks/saved_models/', 'saved_state.state')
-drive_dir_ID = '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX'
-Gd.load_version(local_file, drive_dir_ID)
-
-state = torch.load(local_file, map_location=lambda storage, loc: storage)
-net.load_state_dict(state['state_dict'])
-#Training...
-state['state_dict'] = net.state_dict()
-torch.save(state, local_file)
-
-Gd.upload_model(local_file, drive_dir_ID)
-
-
+!pip install - U - q PyDrive  
+import os  
+os.chdir('/content/')  
+!git clone https://github.com/ruelj2/Google_drive.git  
+  
+from Google_drive.handle import Google_drive  
+Gd = Google_drive()  
+  
+#This is a Google directory link: https://drive.google.com/drive/folders/1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX  
+#This is its ID: '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX'  
+Gd.load_all('/content/projet/dataset', '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX')  
+  
+local_file = os.path.join('project/networks/saved_models/', 'saved_state.state')  
+drive_dir_ID = '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX'  
+Gd.load_version(local_file, drive_dir_ID)  
+  
+state = torch.load(local_file, map_location=lambda storage, loc: storage)  
+net.load_state_dict(state['state_dict'])  
+#Training...  
+state['state_dict'] = net.state_dict()  
+torch.save(state, local_file)  
+  
+Gd.upload_model(local_file, drive_dir_ID)  
+  
 # Use on a local machine:
 For a local machine, colabtools repo must be installed
 
