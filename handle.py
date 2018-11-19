@@ -45,9 +45,9 @@ class Google_drive:
         handle = drive_handle_model(self.drive, name, drive_dir_ID)
         handle.print_all_versions()
 
-    def load_version(self, name, local_dir, drive_dir_ID, specific_version=None):
+    def load_version(self, name, local_file, drive_dir_ID, specific_version=None):
         handle = drive_handle_model(self.drive, name, drive_dir_ID)
-        handle.load_saved_states(local_dir, specific_version=specific_version)
+        handle.load_saved_states(local_file, specific_version=specific_version)
 
     def upload_model(self, name, local_file, drive_dir_ID):
         handle = drive_handle_model(self.drive, name, drive_dir_ID)
@@ -154,7 +154,9 @@ class drive_handle_model:
                     except:
                         print('Not able to load last version of the model from google Drive')
             else:
-                print('No previous version available on Google drive')
+                print('{} already exists'.format(local_file))
+        else:
+            print('No previous version available on Google drive')
 
     def upload_model(self, local_file):
         if os.path.isfile(local_file):
