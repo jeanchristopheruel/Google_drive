@@ -23,13 +23,19 @@ __Gd.print_all_versions(filename, drive_dir_ID)__
 Thsi method prints all current versions of a file called __filename__ available inside the Google Drive directory provided by its ID __drive_dir_ID__.
 
 __Gd.load_all(local_dir, drive_dir_ID, force=False)__  
-This method import all files available inside the Google Drive directory provided by its ID __drive_dir_ID__ to the local directory __local_dir__. __force__ allows overwriting 
+This method import all files available inside the Google Drive directory provided by its ID __drive_dir_ID__ to the local directory path __local_dir__. __force__ allows overwriting 
 
 __Gd.load_file(local_dir, file_ID)__  
-This method import file provided by its ID __file_ID__ into the the local directory __local_dir__.
+This method import file provided by its ID __file_ID__ into the the local directory path __local_dir__.
 
 __Gd.upload_file(local_path, drive_dir_ID)__  
-This method upload a file available inside the local directory path __local_file__ into the Google Drive directory provided by its ID __drive_dir_ID__.
+This method upload a file available inside the local path __local_file__ into the Google Drive directory provided by its ID __drive_dir_ID__.
+
+# featured function
+(from Google_drive.handle import loadURL)  
+
+__loadURL(local_dir, URL)__
+This method download a file from arbitrary URL inside the local directory path __local_dir__. If the file is zipped, it will unzip it (based on basename of URL).
 
 
 # Exemple for Google colaboratory
