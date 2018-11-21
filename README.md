@@ -31,7 +31,10 @@ This method import file provided by its ID __file_ID__ into the the local direct
 __Gd.upload_file(local_path, drive_dir_ID)__  
 This method upload a file available inside the local path __local_file__ into the Google Drive directory provided by its ID __drive_dir_ID__.
 
-__Gd.loadURL(local_dir, URL)__
+# featured function
+(from Google_drive.handle import loadURL)  
+
+__loadURL(local_dir, URL)__
 This method download a file from arbitrary URL inside the local directory path __local_dir__. If the file is zipped, it will unzip it (based on basename of URL).
 
 
