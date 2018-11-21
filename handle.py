@@ -5,6 +5,8 @@ from google.colab import auth
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from oauth2client.client import GoogleCredentials
+import requests
+import zipfile
 
 
 class Google_drive:
@@ -100,6 +102,24 @@ class Google_drive:
         file = self.drive.CreateFile({'parents': [{u'id': drive_dir_ID}], 'title': name})
         file.SetContentFile(local_path)
         file.Upload()
+
+    def loadURL(self, local_dir, URL):
+        name = URL.rsplit('/', 1)[-1]
+        print('\x1b[0;33;0m' + 'Téléchargement du fichier...' + '\x1b[0m')
+        if not os.path.exists(local_dir):
+            os.makedirs(local_dir)
+        local_file = os.path.join(local_dir, name)
+        r = requests.get(URL)
+        with open(local_file, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=512 * 1024):
+                if chunk:
+                    f.write(chunk)
+        if 'zip' in name:
+            print('Unzipping...')
+            with zipfile.ZipFile(local_file, "r") as zip_ref:
+                zip_ref.extractall(local_dir)
+            os.remove(local_file)
+        print('\x1b[0;33;0m' + 'Téléchargement terminé ' + '\x1b[0m')
 
 
 class drive_handle_model:
