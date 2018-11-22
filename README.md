@@ -65,7 +65,7 @@ torch.save(state, local_file)
 Gd.upload_model(local_file, drive_dir_ID)  
 ```
 
-# Use on a local machine:
+# Use on local machine:
 For a local machine, colabtools repo must be installed  
 ```
 $ git clone https://github.com/googlecolab/colabtools.git  
