@@ -56,13 +56,13 @@ local_file = os.path.join('project/networks/saved_models/', 'saved_state.state')
 drive_dir_ID = '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX'  
 Gd.load_version(local_file, drive_dir_ID)  
   
-state = torch.load(local_file, map_location=lambda storage, loc: storage)  
-net.load_state_dict(state['state_dict'])  
-#Training...  
-state['state_dict'] = net.state_dict()  
-torch.save(state, local_file)  
+'''
+Loading Model from local file;
+Training Model;
+Saving Model to local file.
+'''
   
-Gd.upload_model(local_file, drive_dir_ID)  
+Gd.upload_version(local_file, drive_dir_ID)  
 ```
 
 # Use on local machine:
