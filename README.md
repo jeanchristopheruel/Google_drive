@@ -19,7 +19,7 @@ __Gd.load_version(local_file, drive_dir_ID, specific_version=None)__
 This method import file called by __os.path.basename(local_file)__ (if possible) available inside the Google Drive directory provided by its ID __drive_dir_ID__ and save it under the path __local_file__. Basename of local_file must be the same as used in upload_version().
 If specific_version is None, default version is the highest version.
 
-__Gd.print_all_versions(filename, drive_dir_ID)__  
+```__Gd.print_all_versions(filename, drive_dir_ID)__ ``` 
 This method prints all current versions of a file called __filename__ available inside the Google Drive directory provided by its ID __drive_dir_ID__.
 
 __Gd.load_all(local_dir, drive_dir_ID, force=False)__  
@@ -34,7 +34,7 @@ This method upload a file available inside the local path __local_file__ into th
 # featured function
 (from Google_drive.handle import loadURL)  
 
-__loadURL(local_dir, URL)__
+__loadURL(local_dir, URL)__  
 This method download a file from arbitrary URL inside the local directory path __local_dir__. If the file is zipped, it will unzip it (based on URL basename).
 
 
