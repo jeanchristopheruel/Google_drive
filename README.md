@@ -52,7 +52,7 @@ Gd = Google_drive()
 #This is its ID: '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX'  
 Gd.load_all('/content/projet/dataset', '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX')  
   
-local_file = os.path.join('project/networks/saved_models/', 'saved_state.state')  
+local_file = 'path/to/local/file'
 drive_dir_ID = '1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX'  
 Gd.load_version(local_file, drive_dir_ID)  
   
