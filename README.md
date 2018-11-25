@@ -31,9 +31,7 @@ This method import file provided by its ID __file_ID__ into the the local direct
 ```Gd.upload_file(local_path, drive_dir_ID)```    
 This method upload a file available inside the local path __local_file__ into the Google Drive directory provided by its ID __drive_dir_ID__.
 
-# featured function
-(from Google_drive.handle import loadURL)  
-
+# featured function 
 ```loadURL(local_dir, URL)```     
 This method download a file from arbitrary URL inside the local directory path __local_dir__. If the file is zipped, it will unzip it (based on URL basename).
 
@@ -45,7 +43,7 @@ import os
 os.chdir('/content/')  
 !git clone https://github.com/ruelj2/Google_drive.git  
   
-from Google_drive.handle import Google_drive  
+from Google_drive.handle import *
 Gd = Google_drive()  
   
 #This is a Google directory link: https://drive.google.com/drive/folders/1TcMSKVAgRXZXymxfBv3WouPkauSIIpDX  
