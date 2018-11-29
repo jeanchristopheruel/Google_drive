@@ -31,7 +31,7 @@ This method import file provided by its ID __file_ID__* into the the local direc
 ```Gd.upload_file(local_path, drive_dir_ID)```    
 This method upload a file available inside the local path __local_file__ into the Google Drive directory provided by its ID __drive_dir_ID__*.
 
-* The shared link of google directory/file provided by its __ID__ must be activated. 
+\* The shared link of google directory/file provided by its __ID__ must be activated. 
 
 # featured function 
 ```loadURL(local_dir, URL)```     
