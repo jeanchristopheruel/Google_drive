@@ -13,23 +13,25 @@ It was made essentially to make data sharing easier between Google Colaboratory 
 Call main class
 
 ```Gd.upload_version(local_file, drive_dir_ID)```    
-This method uploads the file called by __os.path.basename(local_file)__ available inside the local directory path __local_file__ to the Google Drive directory provided by its ID __drive_dir_ID__. Basename of local_file must be the same as used in load_version().
+This method uploads the file called by __os.path.basename(local_file)__ available inside the local directory path __local_file__ to the Google Drive directory provided by its ID __drive_dir_ID__*. Basename of local_file must be the same as used in load_version().
 
 ```Gd.load_version(local_file, drive_dir_ID, specific_version=None)```     
-This method import file called by __os.path.basename(local_file)__ (if possible) available inside the Google Drive directory provided by its ID __drive_dir_ID__ and save it under the path __local_file__. Basename of local_file must be the same as used in upload_version().
+This method import file called by __os.path.basename(local_file)__ (if possible) available inside the Google Drive directory provided by its ID __drive_dir_ID__* and save it under the path __local_file__. Basename of local_file must be the same as used in upload_version().
 If specific_version is None, default version is the highest version.
 
 ```Gd.print_all_versions(filename, drive_dir_ID) ```   
-This method prints all current versions of a file called __filename__ available inside the Google Drive directory provided by its ID __drive_dir_ID__.
+This method prints all current versions of a file called __filename__ available inside the Google Drive directory provided by its ID __drive_dir_ID__*.
 
 ```Gd.load_all(local_dir, drive_dir_ID, force=False)```     
-This method import all files available inside the Google Drive directory provided by its ID __drive_dir_ID__ to the local directory path __local_dir__. __force__ allows overwriting 
+This method import all files available inside the Google Drive directory provided by its ID __drive_dir_ID__* to the local directory path __local_dir__. __force__ allows overwriting 
 
 ```Gd.load_file(local_dir, file_ID)```   
-This method import file provided by its ID __file_ID__ into the the local directory path __local_dir__.
+This method import file provided by its ID __file_ID__* into the the local directory path __local_dir__.
 
 ```Gd.upload_file(local_path, drive_dir_ID)```    
-This method upload a file available inside the local path __local_file__ into the Google Drive directory provided by its ID __drive_dir_ID__.
+This method upload a file available inside the local path __local_file__ into the Google Drive directory provided by its ID __drive_dir_ID__*.
+
+* The shared link of google directory/file provided by its __ID__ must be activated. 
 
 # featured function 
 ```loadURL(local_dir, URL)```     
