@@ -23,7 +23,7 @@ If specific_version is None, default version is the highest version.
 This method prints all current versions of a file called __filename__ available inside the Google Drive directory provided by its ID __drive_dir_ID__*.
 
 ```Gd.load_all(local_dir, drive_dir_ID, force=False)```     
-This method import all files available inside the Google Drive directory provided by its ID __drive_dir_ID__* to the local directory path __local_dir__. __force__ allows overwriting 
+This method import all files available inside the Google Drive directory provided by its ID __drive_dir_ID__* to the local directory path. Also, __local_dir__. __force__ allows overwriting. The Google Drive directory must exclusively gather files.
 
 ```Gd.load_file(local_dir, file_ID)```   
 This method import file provided by its ID __file_ID__* into the the local directory path __local_dir__.
