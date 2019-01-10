@@ -67,7 +67,7 @@ class Google_drive:
         file_list = self.drive.ListFile(
             {'q': ID}).GetList()
 
-        print('Checking for new files...')
+        print('Looking for new files...')
         already_down = [f for f in listdir(self.local_dir) if isfile(join(self.local_dir, f))]
         files = {f['title']: f['id'] for f in file_list}
         todownload = {keys for keys in files if keys not in already_down}
